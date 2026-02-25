@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nesselräth - Rock & Kölsche Lieder</title>
+    
+    <!-- Tailwind CSS für das Layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome für die Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Passion One (für das dicke Nesselräth-Logo) und Bebas Neue (für das Banner) -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Passion+One:wght@700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Konfiguration für Farben und Schriftarten -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'rock': ['"Passion One"', 'sans-serif'],
+                        'banner': ['"Bebas Neue"', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        bandred: '#dc2626',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .rock-box {
+            box-shadow: 6px 6px 0px #dc2626;
+            transition: all 0.3s ease;
+        }
+        .rock-box:hover {
+            box-shadow: 2px 2px 0px #dc2626;
+            transform: translate(4px, 4px);
+        }
+
+        .logo-font-style {
+            color: #f4f4f5;
+            -webkit-text-stroke: 3px #dc2626;
+            paint-order: stroke fill;
+            text-shadow: 4px 4px 0px #09090b;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-font-style {
+                -webkit-text-stroke: 2px #dc2626;
+            }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-body selection:bg-bandred selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 border-b-4 border-transparent">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 flex justify-between items-center relative">
+            
+            <a href="#home" class="text-4xl font-rock tracking-widest text-white hover:text-bandred transition-colors z-20 logo-font-style">
+                NESSELRÄTH
+            </a>
+            
+            <!-- Desktop Menü -->
+            <div class="hidden md:flex space-x-6 lg:space-x-8 text-lg font-bold uppercase tracking-widest z-20 font-banner text-2xl mt-2">
+                <a href="#about" class="hover:text-bandred transition-colors">Die Band</a>
+                <a href="#live" class="hover:text-bandred transition-colors">Live</a>
+                <a href="#setlist" class="hover:text-bandred transition-colors">Setlist</a>
+                <a href="#merch" class="hover:text-bandred transition-colors">Merch</a>
+                <a href="#booking" class="hover:text-bandred transition-colors">Booking</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-3xl text-white hover:text-bandred transition-colors z-20">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menü -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-zinc-950 border-b-4 border-bandred shadow-2xl flex flex-col text-center uppercase tracking-widest font-bold text-2xl font-banner">
+            <a href="#about" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Die Band</a>
+            <a href="#live" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Live</a>
+            <a href="#setlist" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Setlist</a>
+            <a href="#merch" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Merch</a>
+            <a href="#booking" class="py-4 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Booking</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 px-4 bg-zinc-900 overflow-hidden">
+        <!-- Das epische neue Hintergrundbild -->
+        <div class="absolute inset-0 bg-[url('Hintergrund.jpg')] bg-cover bg-center bg-no-repeat z-0"></div>
+        <!-- Ein leicht transparenter Farbverlauf darüber, damit das Logo lesbar bleibt -->
+        <div class="absolute inset-0 bg-gradient-to-b from-zinc-900/60 via-zinc-950/90 to-black z-0"></div>
+        
+        <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
+            
+            <div class="border-4 border-zinc-100 rock-box p-2 md:p-3 bg-zinc-950/90 w-full mt-4 md:mt-8 mb-4 md:mb-6 flex flex-col items-center relative z-10">
+                <!-- Versteckte H1 für Suchmaschinen, damit Nesselräth gefunden wird -->
+                <h1 class="sr-only">NESSELRÄTH</h1>
+                
+                <!-- Logo füllt jetzt den kompletten Rahmen aus -->
+                <img src="Nesselräth_heute.jpg" alt="Nesselräth Graphic" class="w-full h-auto max-h-[60vh] md:max-h-[70vh] object-contain mx-auto">
+            </div>
+
+            <a href="#live" class="mt-2 md:mt-8 bg-bandred text-zinc-100 px-6 py-3 md:px-8 md:py-4 font-bold uppercase tracking-widest text-lg md:text-xl hover:bg-red-700 transition-all border-4 border-transparent hover:border-zinc-100 flex items-center space-x-3 font-banner">
+                <span>Zu den Tourdaten</span>
+                <i class="fa-solid fa-chevron-down animate-bounce text-lg"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Die Band Section -->
+    <section id="about" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-950 border-t-4 border-bandred relative">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl md:text-8xl text-center mb-16 md:mb-20 font-rock tracking-widest logo-font-style">
+                DIE BAND
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Bernie -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="w-40 h-40 md:w-48 md:h-48 mb-6 border-4 border-zinc-100 rock-box bg-zinc-900 flex items-center justify-center overflow-hidden">
+                        <img src="Bernie.jpg" alt="Bernie am Mikrofon" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h3 class="text-4xl md:text-5xl mb-2 text-zinc-100 font-rock tracking-wide">Bernie</h3>
+                    <div class="bg-bandred text-white px-4 py-1 font-bold uppercase tracking-widest mb-4 transform -rotate-2 font-banner text-xl">Gesang</div>
+                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base">Die Stimme der Band. Bringt jedes Kölsche Herz zum Schmelzen und rockt die Bude.</p>
+                </div>
+
+                <!-- Markus -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="w-40 h-40 md:w-48 md:h-48 mb-6 border-4 border-zinc-100 rock-box bg-zinc-900 flex items-center justify-center overflow-hidden">
+                        <img src="Markus.jpg" alt="Markus an der Gitarre" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h3 class="text-4xl md:text-5xl mb-2 text-zinc-100 font-rock tracking-wide">Markus</h3>
+                    <div class="bg-bandred text-white px-4 py-1 font-bold uppercase tracking-widest mb-4 transform -rotate-2 font-banner text-xl">Gitarre</div>
+                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base">Der Meister der Riffs. Ohne seine Akkorde wäre "Skandal im Sperrbezirk" nur ein Gerücht.</p>
+                </div>
+
+                <!-- ACHIM -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="w-40 h-40 md:w-48 md:h-48 mb-6 border-4 border-zinc-100 rock-box bg-zinc-900 flex items-center justify-center overflow-hidden">
+                        <img src="464.jpg" alt="Achim am Bass" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h3 class="text-4xl md:text-5xl mb-2 text-zinc-100 font-rock tracking-wide">Achim</h3>
+                    <div class="bg-bandred text-white px-4 py-1 font-bold uppercase tracking-widest mb-4 transform -rotate-2 font-banner text-xl">Bass</div>
+                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base">Der Groove-Garant. Sorgt für das wohlige Wummern in der Magengrube.</p>
+                </div>
+
+                <!-- Jörg -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="w-40 h-40 md:w-48 md:h-48 mb-6 border-4 border-zinc-100 rock-box bg-zinc-900 flex items-center justify-center overflow-hidden">
+                        <img src="Joerg.jpg" alt="Jörg am Cajon" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h3 class="text-4xl md:text-5xl mb-2 text-zinc-100 font-rock tracking-wide">Jörg</h3>
+                    <div class="bg-bandred text-white px-4 py-1 font-bold uppercase tracking-widest mb-4 transform -rotate-2 font-banner text-xl">Cajon</div>
+                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base">Der Taktgeber auf der Holzkiste. Macht aus jedem Song einen tanzbaren Hit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE / Tour Section -->
+    <section id="live" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-900 border-t-4 border-bandred relative">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <h2 class="text-5xl md:text-8xl text-center mb-12 md:mb-16 font-rock tracking-widest logo-font-style">
+                LIVE 2026
+            </h2>
+
+            <div class="bg-zinc-950 border-4 border-zinc-100 rock-box p-4 md:p-10">
+                <div class="flex flex-col space-y-4">
+                    
+                    <!-- Gig 1: Scala Club -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">13. MÄRZ <span class="text-xl text-zinc-500">(FR)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Scala Club</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Scala+Club+Opladen" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Opladen
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>20:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 2 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">11. APRIL <span class="text-xl text-zinc-500">(SA)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Ubierschänke</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Ubierschänke+Köln" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Köln (Südstadt)
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>21:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 3 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">08. MAI <span class="text-xl text-zinc-500">(FR)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Notenschlüssel</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Notenschlüssel+Leverkusen" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Leverkusen
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>20:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 4: Grammo Festival (Pfingsten 2026) -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">23. MAI <span class="text-xl text-zinc-500">(SA)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Grammo Festival <span class="text-zinc-500 text-xl md:text-2xl ml-2">- Pfingsten</span></div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Grammo+Festival+Leichlingen" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Leichlingen
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>18:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 5 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">06. JUNI <span class="text-xl text-zinc-500">(SA)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Pitcher</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Pitcher+Düsseldorf" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Düsseldorf
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>21:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 6: The Pub -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">10. JULI <span class="text-xl text-zinc-500">(FR)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">The Pub</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=The+Pub+Opladen" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Opladen
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>20:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 7 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">18. SEPT <span class="text-xl text-zinc-500">(FR)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Blue Shell</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Blue+Shell+Köln" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Köln
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>21:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 8 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">10. OKT <span class="text-xl text-zinc-500">(SA)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Die Flotte</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Die+Flotte+Köln" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Köln (Kwartier Latäng)
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>21:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 9 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between border-b-2 border-zinc-800 pb-4 group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">13. NOV <span class="text-xl text-zinc-500">(FR)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Zum lustigen Köbes</div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Zum+lustigen+Köbes+Köln" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Köln
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>20:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                    <!-- Gig 10 -->
+                    <div class="flex flex-col md:flex-row items-center justify-between group hover:bg-zinc-900 transition-colors p-4">
+                        <div class="text-bandred font-rock text-3xl md:text-4xl w-full md:w-48 text-center md:text-left mb-2 md:mb-0">12. DEZ <span class="text-xl text-zinc-500">(SA)</span></div>
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="font-banner text-2xl md:text-4xl text-white tracking-wider">Weihnachts-Rock <br class="md:hidden"><span class="text-xl">im Schafstall</span></div>
+                            <div class="text-zinc-400 font-bold uppercase tracking-widest text-sm">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Schafstall+Solingen" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline decoration-bandred underline-offset-4 transition-all">
+                                    <i class="fa-solid fa-location-dot text-bandred mr-2"></i>Solingen
+                                </a> 
+                                <span class="mx-2 hidden sm:inline">|</span><br class="sm:hidden"> 
+                                <i class="fa-regular fa-clock text-bandred mr-2 mt-1 sm:mt-0"></i>20:00 Uhr
+                            </div>
+                        </div>
+                        <a href="#booking" class="mt-4 md:mt-0 border-2 border-bandred text-bandred hover:bg-bandred hover:text-white px-6 py-2 font-banner text-xl transition-colors">Infos</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setlist Section -->
+    <section id="setlist" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-950 border-t-4 border-bandred relative">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="text-5xl md:text-8xl text-center mb-12 md:mb-16 font-rock tracking-widest logo-font-style">
+                WAS WIR SPIELEN
+            </h2>
+
+            <div class="bg-zinc-900 border-4 border-zinc-100 rock-box p-6 md:p-12">
+                <ul class="space-y-4 md:space-y-6 text-xl md:text-4xl font-banner uppercase tracking-wider">
+                    <li class="flex items-center space-x-4 md:space-x-6 border-b-2 border-zinc-800 pb-4 hover:text-bandred transition-colors cursor-default">
+                        <span class="text-bandred font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">1.</span>
+                        <span>Skandal im Sperrbezirk</span>
+                    </li>
+                    <li class="flex items-center space-x-4 md:space-x-6 border-b-2 border-zinc-800 pb-4 hover:text-bandred transition-colors cursor-default">
+                        <span class="text-bandred font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">2.</span>
+                        <span>Trink doch eene mit</span>
+                    </li>
+                    <li class="flex items-center space-x-4 md:space-x-6 border-b-2 border-zinc-800 pb-4 hover:text-bandred transition-colors cursor-default">
+                        <span class="text-bandred font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">3.</span>
+                        <span>Mein Ding</span>
+                    </li>
+                    <li class="flex items-center space-x-4 md:space-x-6 border-b-2 border-zinc-800 pb-4 hover:text-bandred transition-colors cursor-default">
+                        <span class="text-bandred font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">4.</span>
+                        <span>Women in black</span>
+                    </li>
+                    <li class="flex items-center space-x-4 md:space-x-6 border-b-2 border-zinc-800 pb-4 hover:text-bandred transition-colors cursor-default">
+                        <span class="text-bandred font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">5.</span>
+                        <span>Kölsche Jung</span>
+                    </li>
+                    <li class="flex items-center space-x-4 md:space-x-6 border-b-2 border-zinc-800 pb-4 hover:text-bandred transition-colors cursor-default">
+                        <span class="text-bandred font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">6.</span>
+                        <span>Carbonara</span>
+                    </li>
+                    <li class="flex items-center space-x-4 md:space-x-6 pt-4 text-zinc-500 italic">
+                        <span class="text-zinc-600 font-rock text-4xl md:text-5xl w-8 md:w-12 text-right">...</span>
+                        <span>und vieles mehr!</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Merch Section -->
+    <section id="merch" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-900 border-t-4 border-bandred relative">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl md:text-8xl text-center mb-16 md:mb-20 font-rock tracking-widest logo-font-style">
+                BAND MERCH
+            </h2>
+
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 max-w-md border-4 border-zinc-100 rock-box bg-zinc-950 p-8 flex items-center justify-center relative group">
+                    <img src="2273.jpg" alt="Nesselräth T-Shirt" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute -top-6 -left-6 bg-bandred text-white px-6 py-2 font-rock text-4xl transform -rotate-12 shadow-[4px_4px_0px_#f4f4f5]">NEU!</div>
+                </div>
+
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <h3 class="text-4xl md:text-5xl text-white font-rock mb-4">Das Offizielle Nesselräth Shirt</h3>
+                    <p class="text-zinc-400 text-lg md:text-xl mb-6">Trag den Rock 'n' Roll auf der Brust! Unser brandneues Band-Shirt in fetter Grunge-Optik. Perfekt für das nächste Konzert, die Probe oder den Kiosk-Besuch.</p>
+                    
+                    <div class="text-6xl font-rock text-bandred mb-8">29,00 €</div>
+                    
+                    <a href="#booking" class="inline-block w-full md:w-auto text-center bg-zinc-100 text-zinc-950 font-banner font-bold uppercase tracking-widest text-2xl md:text-3xl py-4 px-8 rock-box hover:bg-zinc-300 transition-colors border-4 border-zinc-950">
+                        Jetzt Bestellen
+                    </a>
+                    <p class="text-sm text-zinc-500 mt-4 font-bold tracking-wider">(Einfach über das Kontaktformular eure Größe angeben!)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking / Contact Section -->
+    <section id="booking" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-950 border-t-4 border-bandred">
+        <div class="max-w-6xl mx-auto border-4 border-zinc-100 rock-box bg-zinc-900 overflow-hidden flex flex-col md:flex-row">
+            
+            <div class="p-6 md:p-16 flex-1 flex flex-col justify-center bg-zinc-900">
+                <h2 class="text-5xl md:text-8xl mb-6 md:mb-8 font-rock tracking-widest logo-font-style">
+                    BUCHT UNS!
+                </h2>
+                <p class="text-zinc-400 mb-8 md:mb-10 text-lg md:text-xl">
+                    Kein Fest ohne Nesselräth. Schreibt uns eine Nachricht, stellt das Kölsch kalt und wir bringen die Stimmung mit.
+                </p>
+                
+                <div class="space-y-6 md:space-y-8 font-banner text-2xl tracking-wider">
+                    <div class="flex items-center space-x-4 md:space-x-6">
+                        <i class="fa-solid fa-envelope text-3xl md:text-4xl text-bandred"></i>
+                        <div>
+                            <div class="text-sm md:text-lg text-zinc-500 font-bold uppercase tracking-widest">Email</div>
+                            <a href="mailto:booking@nesselraeth.de" class="text-xl sm:text-2xl md:text-3xl font-bold hover:text-bandred transition-colors break-all text-white">booking@nesselraeth.de</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 md:space-x-6">
+                        <i class="fa-solid fa-location-dot text-3xl md:text-4xl text-bandred"></i>
+                        <div>
+                            <div class="text-sm md:text-lg text-zinc-500 font-bold uppercase tracking-widest">Location</div>
+                            <div class="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-200 text-white">Raum Köln / NRW</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6 md:p-16 flex-1 border-t-4 md:border-t-0 md:border-l-4 border-zinc-100 bg-red-900">
+                <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault(); alert('In der echten Version würde hier jetzt eine Mail verschickt werden!');">
+                    <div>
+                        <label class="block text-xl md:text-2xl font-banner font-bold text-zinc-100 mb-2 uppercase tracking-wide">Name</label>
+                        <input type="text" class="w-full bg-zinc-950 border-2 border-zinc-950 p-3 md:p-4 text-white text-base md:text-lg focus:outline-none focus:border-white transition-colors" placeholder="Dein Name" required>
+                    </div>
+                    <div>
+                        <label class="block text-xl md:text-2xl font-banner font-bold text-zinc-100 mb-2 uppercase tracking-wide">Email</label>
+                        <input type="email" class="w-full bg-zinc-950 border-2 border-zinc-950 p-3 md:p-4 text-white text-base md:text-lg focus:outline-none focus:border-white transition-colors" placeholder="deine@email.de" required>
+                    </div>
+                    <div>
+                        <label class="block text-xl md:text-2xl font-banner font-bold text-zinc-100 mb-2 uppercase tracking-wide">Nachricht</label>
+                        <textarea rows="4" class="w-full bg-zinc-950 border-2 border-zinc-950 p-3 md:p-4 text-white text-base md:text-lg focus:outline-none focus:border-white transition-colors resize-none" placeholder="Eure Anfrage... (z.B. T-Shirt Bestellung inkl. Größe!)" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-zinc-100 text-zinc-950 font-banner font-bold uppercase tracking-widest text-2xl md:text-4xl py-3 md:py-4 rock-box hover:bg-zinc-300 transition-colors border-4 border-zinc-950">
+                        AB GEHT'S
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 md:py-12 px-4 md:px-8 border-t-8 border-bandred text-center md:text-left">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-3xl md:text-5xl font-rock tracking-widest text-zinc-500 hover:text-white transition-colors cursor-pointer" onclick="window.scrollTo(0,0)">
+                NESSELRÄTH
+            </div>
+            
+            <div class="flex space-x-6 md:space-x-8">
+                <a href="#" class="text-zinc-500 hover:text-white transition-colors text-2xl md:text-4xl"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-zinc-500 hover:text-white transition-colors text-2xl md:text-4xl"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            
+            <div class="text-sm md:text-xl text-zinc-600 font-banner tracking-wider">
+                &copy; 2026 Nesselräth | <a href="#" class="hover:text-white transition-colors">Impressum</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Skripte für Navigation -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-zinc-950', 'border-bandred', 'shadow-2xl');
+                navbar.classList.remove('bg-transparent', 'border-transparent');
+            } else {
+                navbar.classList.add('bg-transparent', 'border-transparent');
+                navbar.classList.remove('bg-zinc-950', 'border-bandred', 'shadow-2xl');
+            }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
