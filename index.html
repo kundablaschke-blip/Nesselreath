@@ -53,6 +53,12 @@
                 -webkit-text-stroke: 2px #dc2626;
             }
         }
+
+        /* Styling für die Gästebuch Scrollbar */
+        .gb-scrollbar::-webkit-scrollbar { width: 8px; }
+        .gb-scrollbar::-webkit-scrollbar-track { background: #18181b; }
+        .gb-scrollbar::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 4px; }
+        .gb-scrollbar::-webkit-scrollbar-thumb:hover { background: #b91c1c; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 font-body selection:bg-bandred selection:text-white">
@@ -71,6 +77,7 @@
                 <a href="#live" class="hover:text-bandred transition-colors">Live</a>
                 <a href="#setlist" class="hover:text-bandred transition-colors">Setlist</a>
                 <a href="#merch" class="hover:text-bandred transition-colors">Merch</a>
+                <a href="#guestbook" class="hover:text-bandred transition-colors">Gästebuch</a>
                 <a href="#booking" class="hover:text-bandred transition-colors">Booking</a>
             </div>
 
@@ -86,6 +93,7 @@
             <a href="#live" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Live</a>
             <a href="#setlist" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Setlist</a>
             <a href="#merch" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Merch</a>
+            <a href="#guestbook" class="py-4 border-b border-zinc-800 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Gästebuch</a>
             <a href="#booking" class="py-4 hover:text-bandred hover:bg-zinc-900 transition-colors mobile-link">Booking</a>
         </div>
     </nav>
@@ -410,11 +418,43 @@
         </div>
     </section>
 
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-950 border-t-4 border-bandred relative">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl md:text-8xl text-center mb-16 md:mb-20 font-rock tracking-widest logo-font-style">
+                GÄSTEBUCH
+            </h2>
+
+            <!-- Eingabeformular -->
+            <div class="bg-zinc-900 border-4 border-zinc-100 rock-box p-6 md:p-12 mb-12">
+                <form id="guestbook-form" class="space-y-4 md:space-y-6">
+                    <div>
+                        <label class="block text-xl md:text-2xl font-banner font-bold text-zinc-100 mb-2 uppercase tracking-wide">Dein Name</label>
+                        <input type="text" id="gb-name" class="w-full bg-zinc-950 border-2 border-zinc-800 p-3 md:p-4 text-white focus:outline-none focus:border-bandred transition-colors text-lg" placeholder="Rockstar123" required>
+                    </div>
+                    <div>
+                        <label class="block text-xl md:text-2xl font-banner font-bold text-zinc-100 mb-2 uppercase tracking-wide">Nachricht</label>
+                        <textarea id="gb-msg" rows="3" class="w-full bg-zinc-950 border-2 border-zinc-800 p-3 md:p-4 text-white focus:outline-none focus:border-bandred transition-colors resize-none text-lg" placeholder="Geiler Gig gestern!" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full md:w-auto bg-bandred text-zinc-100 font-banner font-bold uppercase tracking-widest text-2xl md:text-3xl py-3 px-10 rock-box hover:bg-red-700 transition-colors border-4 border-transparent hover:border-zinc-100">
+                        Eintragen
+                    </button>
+                    <p id="gb-status" class="text-zinc-500 font-bold mt-4 tracking-wider hidden"></p>
+                </form>
+            </div>
+
+            <!-- Liste der Einträge mit statischer Höhe und Scrollbar -->
+            <div class="bg-zinc-900 border-4 border-zinc-800 p-6 md:p-10 h-[500px] overflow-y-auto gb-scrollbar" id="guestbook-entries">
+                <p class="text-zinc-500 italic text-center">Lädt Einträge...</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Booking / Contact Section -->
-    <section id="booking" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-950 border-t-4 border-bandred">
-        <div class="max-w-6xl mx-auto border-4 border-zinc-100 rock-box bg-zinc-900 overflow-hidden flex flex-col md:flex-row">
+    <section id="booking" class="py-20 md:py-24 px-4 md:px-8 bg-zinc-900 border-t-4 border-bandred">
+        <div class="max-w-6xl mx-auto border-4 border-zinc-100 rock-box bg-zinc-950 overflow-hidden flex flex-col md:flex-row">
             
-            <div class="p-6 md:p-16 flex-1 flex flex-col justify-center bg-zinc-900">
+            <div class="p-6 md:p-16 flex-1 flex flex-col justify-center bg-zinc-950">
                 <h2 class="text-5xl md:text-8xl mb-6 md:mb-8 font-rock tracking-widest logo-font-style">
                     BUCHT UNS!
                 </h2>
@@ -479,6 +519,77 @@
             </div>
         </div>
     </footer>
+
+    <!-- Gästebuch Script (komplett in Vanilla JavaScript, keine Datenbank nötig!) -->
+    <script>
+        const entriesContainer = document.getElementById('guestbook-entries');
+        const form = document.getElementById('guestbook-form');
+        const nameInput = document.getElementById('gb-name');
+        const msgInput = document.getElementById('gb-msg');
+        const statusMsg = document.getElementById('gb-status');
+
+        // Die 14 festen, legendären Fake-Einträge
+        let localEntries = [
+            { name: "Rock Susi 💋", date: "Vor 2 Tagen", msg: "Bernie, ich will ein Kind von dir! Oder zumindest ein Freibier! 🍻" },
+            { name: "Kalle_Moshpit", date: "Vor 3 Tagen", msg: "Wann spielt ihr endlich mal in Wacken? Der Notenschlüssel in Leverkusen ist mir zu leise! 🎸🤘" },
+            { name: "Freibier_Fred", date: "Vor 5 Tagen", msg: "Geiler Gig gestern! Hab zwar nach dem dritten Song mein Gehör verloren, aber der Bass hat den Magen gut massiert. Danke Achim! 🔊" },
+            { name: "Theken_Uschi", date: "Vor 1 Woche", msg: "Ihr wart super! Aber wer von euch hat nach dem Konzert meinen Deckel mitgenommen?! 🍺👀" },
+            { name: "FrontRow_Frank", date: "Vor 1 Woche", msg: "Habt ihr noch ein Plektrum von Markus? Mein Schrein zuhause ist fast fertig! 🕯️🎸" },
+            { name: "Cajon_Klaus", date: "Vor 2 Wochen", msg: "Jörg, du haust auf die Holzkiste ein, als hätte sie dir Geld geklaut! Richtig geiler Rhythmus! 🥁🔥" },
+            { name: "Pegel_Peter", date: "Vor 2 Wochen", msg: "Niveau hab ich wohl an der Garderobe abgegeben, aber die Extase war real! 🤪" },
+            { name: "Gitarren_Gabi", date: "Vor 3 Wochen", msg: "Markus' Solo bei 'Skandal im Sperrbezirk' hat mir glatt die Dauerwelle geglättet! Wahnsinn! 🎸⚡" },
+            { name: "Köbes_Karl", date: "Vor 1 Monat", msg: "Wenn ihr das nächste Mal bei mir spielt, schließ ich das Kölsch weg. Ihr trinkt mir noch den Laden leer! 🍻" },
+            { name: "Bass_Berta", date: "Vor 1 Monat", msg: "Achim, dein Bassgesicht ist legendär. Sieht aus, als hättest du in eine Zitrone gebissen, aber der Sound ist zuckersüß! 🍋🎵" },
+            { name: "Groupie_Gisela", date: "Vor 2 Monaten", msg: "Ich campe schon seit 3 Wochen vor dem Scala Club in Opladen. Wann kommt ihr endlich zum Soundcheck?! ⛺❄️" },
+            { name: "Zeltplatz_Zimbo", date: "Vor 3 Monaten", msg: "Spielt ihr eigentlich auch auf Hochzeiten? Frage für einen Freund, der bald einen schweren Fehler begeht. 👰🤵‍♂️" },
+            { name: "Riff_Rudi", date: "Vor 4 Monaten", msg: "Ich hab mir beim Luftgitarre spielen gestern den Arm verrenkt. Zahlt das die Bandkasse? 🎸🤕" },
+            { name: "Schunkel_Schorsch", date: "Vor 4 Monaten", msg: "Bei 'Trink doch eene mit' hab ich vor Rührung mein halbes Mettbrötchen fallen lassen. 😭🥪" }
+        ];
+
+        function renderEntries(entries) {
+            entriesContainer.innerHTML = '';
+            entries.forEach(entry => {
+                entriesContainer.innerHTML += `
+                    <div class="border-b-2 border-zinc-800 pb-6 mb-6 last:border-0 last:mb-0">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3 gap-1">
+                            <strong class="text-bandred font-banner text-3xl tracking-widest break-all">${entry.name}</strong>
+                            <span class="text-sm text-zinc-500 whitespace-nowrap"><i class="fa-regular fa-clock mr-2"></i> ${entry.date}</span>
+                        </div>
+                        <p class="text-zinc-300 text-lg leading-relaxed whitespace-pre-wrap">${entry.msg}</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Initiale Einträge laden
+        renderEntries(localEntries);
+
+        // Neuer Eintrag durch Besucher (Lokaler Modus ohne Datenbank)
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Fügt den neuen Eintrag ganz oben ins Array ein
+            localEntries.unshift({
+                name: nameInput.value,
+                date: "Gerade eben",
+                msg: msgInput.value
+            });
+            
+            // Gästebuch neu laden
+            renderEntries(localEntries);
+            
+            // Felder leeren und Erfolgsmeldung zeigen
+            nameInput.value = '';
+            msgInput.value = '';
+            
+            statusMsg.textContent = "Geil, steht drin! (Hinweis: Verschwindet beim Neuladen der Seite wieder)";
+            statusMsg.classList.remove('hidden');
+            
+            // Scrollt im Gästebuch ganz nach oben, damit der User seinen Eintrag sieht
+            entriesContainer.scrollTop = 0;
+        });
+
+    </script>
 
     <!-- Skripte für Navigation -->
     <script>
